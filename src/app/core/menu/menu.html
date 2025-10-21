@@ -1,0 +1,24 @@
+<header class="border-b border-gray-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <div class="flex-shrink-0">
+        <a [routerLink]="['']" class="text-black"> MINIMAL </a>
+      </div>
+
+      <nav class="flex items-center gap-8">
+        <a [routerLink]="['products']" class="text-gray-600 hover:text-black transition-colors">
+          Produtos
+        </a>
+        <button class="relative text-gray-600 hover:text-black transition-colors">
+          <i class="las la-shopping-cart text-3xl"></i>
+
+          <span
+            class="absolute -top-1 -right-1 bg-black text-white rounded-full w-4 h-4 flex items-center justify-center text-xs"
+          >
+            0
+          </span>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>

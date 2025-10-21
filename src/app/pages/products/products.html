@@ -1,0 +1,16 @@
+<div id="produtos" class="mb-8">
+  <h1 class="text-black mb-2">Produtos</h1>
+  <p class="text-gray-600">Descubra nossa coleção minimalista</p>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  @for (product of products; track product) {
+  <app-product-card
+    [image]="product.image"
+    [price]="product.price"
+    [name]="product.name"
+    [category]="product.category"
+  >
+  </app-product-card>
+  }
+</div>
