@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ProductType } from '../../../../core/services/product';
+import { ProductService, ProductType } from '../../../../core/services/product';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -9,6 +9,13 @@ import { RouterLink } from "@angular/router";
   styleUrl: './product-card.scss',
 })
 export class ProductCard {
+
   @Input()
   public product!: ProductType;
+
+  constructor(private productService: ProductService) {}
+
+  delete() {    
+    this.productService.deleteProductById(this.product.id);
+  }
 }

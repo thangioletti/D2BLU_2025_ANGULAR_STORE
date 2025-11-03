@@ -1,10 +1,15 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private products: Array<ProductType> = [
+
+  private productsSubject: BehaviorSubject<Array<ProductType>> = new BehaviorSubject<Array<ProductType>>([]);
+  
+  constructor() {
+    this.productsSubject.next([
     {
       id: 1,
       name: 'Classic Watch',
@@ -52,16 +57,21 @@ export class ProductService {
       category: 'Vestuário',
       image:
         'https://images.unsplash.com/photo-1617033298185-ab4b65511779?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwamFja2V0fGVufDF8fHx8MTc2MTAxNjM3NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
-    },
-  ];
-
-  public getProducts(): Array<ProductType> {
-    return this.products;
+    }]);
+  }
+  
+  public getProducts(): Observable<Array<ProductType>> {
+    return this.productsSubject.asObservable();
   }
 
   public getProductById(id: number): any {
-    return this.products.find((item: ProductType) => item.id == id);
-    
+    const products = this.productsSubject.getValue();
+    return products.find((item: ProductType) => item.id == id);    
+  }
+
+  deleteProductById(id: number) {
+    const products = this.productsSubject.getValue().filter((item: ProductType) => item.id != id);
+    this.productsSubject.next(products);
   }
 }
 

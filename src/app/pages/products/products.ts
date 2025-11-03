@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ProductCard } from "./components/product-card/product-card";
+import { ProductCard } from './components/product-card/product-card';
 import { ProductService, ProductType } from '../../core/services/product';
 
 @Component({
@@ -9,11 +9,10 @@ import { ProductService, ProductType } from '../../core/services/product';
   styleUrl: './products.scss',
 })
 export class Products {
-  
   protected products: Array<ProductType> = [];
-  constructor(private productService: ProductService){
-    this.products = this.productService.getProducts();
+  constructor(private productService: ProductService) {
+    this.productService.getProducts().subscribe((products: Array<ProductType>) => {
+      this.products = products;
+    });
   }
-
- 
 }
