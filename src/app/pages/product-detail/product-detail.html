@@ -10,6 +10,20 @@
     <p class="text-gray-500 text-sm">{{ product.category }}</p>
     <h3 class="text-black">{{ product.name }}</h3>
     <p class="text-black">R$ {{ product.price }}</p>
-    <button (click)="addToCart()" class="p-4 bg-green-500 text-white rounded cursor-pointer">Adicionar ao carrinho</button>
-  </div>  
+    <form [formGroup]="formGroup">
+      <div>
+        Quantidade
+        <input type="text" class="border" formControlName="quantity" />
+      </div>
+
+      <div>
+        Observações
+        <textarea class="border" formControlName="observations"></textarea>
+      </div>
+    </form>
+
+    <button (click)="addToCart()" class="p-4 bg-green-500 text-white rounded cursor-pointer">
+      Adicionar ao carrinho
+    </button>
+  </div>
 </div>

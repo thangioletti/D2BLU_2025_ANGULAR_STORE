@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../../services/cart';
-import { ProductType } from '../../../services/product';
+import { ProductOnCartType } from '../../../services/product';
 
 @Component({
   selector: 'app-cart',
@@ -9,10 +9,10 @@ import { ProductType } from '../../../services/product';
   styleUrl: './cart.scss'
 })
 export class Cart {
-  protected products!: ProductType[];
+  protected products!: ProductOnCartType[];
 
   constructor(private cartService: CartService) {
-    this.cartService.cartItemsHasChanged().subscribe((products: Array<ProductType>) => {
+    this.cartService.cartItemsHasChanged().subscribe((products: Array<ProductOnCartType>) => {
       this.products = products;
     })
   }

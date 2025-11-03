@@ -72,3 +72,8 @@ export interface ProductType {
   category: string;
   image: string;
 }
+
+export interface ProductOnCartType extends ProductType {
+  quantity?: number;
+  observations?: string;
+}
