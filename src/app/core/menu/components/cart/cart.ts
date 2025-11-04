@@ -10,10 +10,11 @@ import { ProductOnCartType } from '../../../services/product';
 })
 export class Cart {
   protected products!: ProductOnCartType[];
-
+  protected cartActive = false;
   constructor(private cartService: CartService) {
     this.cartService.cartItemsHasChanged().subscribe((products: Array<ProductOnCartType>) => {
       this.products = products;
     })
   }
+
 }

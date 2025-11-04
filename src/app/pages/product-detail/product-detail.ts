@@ -2,7 +2,13 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService, ProductType } from '../../core/services/product';
 import { CartService } from '../../core/services/cart';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 @Component({
   selector: 'app-product-detail',
   imports: [ReactiveFormsModule],
@@ -25,7 +31,7 @@ export class ProductDetail {
 
     this.formGroup = this.formBuilder.group({
       quantity: ['1'],
-      observations: ['teste', Validators.required]
+      observations: ['teste', Validators.required],
     });
 
     this.formGroup.valueChanges.subscribe((value) => {
@@ -37,13 +43,12 @@ export class ProductDetail {
       if (value < 1) {
         this.formGroup.get('observations')?.disable();
       } else {
-        this.formGroup.get('observations')?.enable();      
+        this.formGroup.get('observations')?.enable();
       }
     });
   }
 
   addToCart() {
-
     if (this.formGroup.invalid) {
       alert('Por favor, preencha os campos corretamente.');
       return;
@@ -51,7 +56,17 @@ export class ProductDetail {
 
     this.cartService.addItem({
       ...this.product,
-      ...this.formGroup.value
+      ...this.formGroup.value,
     });
+  }
+
+  more() {
+    let qtd = this.formGroup.get('quantity')?.value || 0;
+    this.formGroup.get('quantity')?.setValue(parseInt(qtd)+1);
+  }
+
+  less() {
+    let qtd = this.formGroup.get('quantity')?.value || 0;
+    this.formGroup.get('quantity')?.setValue(Math.max(parseInt(qtd)-1, 0));
   }
 }

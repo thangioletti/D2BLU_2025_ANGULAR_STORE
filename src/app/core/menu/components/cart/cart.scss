@@ -5,5 +5,20 @@
   padding: 1rem;
   border-radius: 1rem;
   min-width: 300px;
-  right: 0;
+  right: -18px;
+  top: 36px;
+
+  &::after {
+    content: ' ';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: #e5e7eb;
+    position: absolute;
+    border: 1px solid #e5e7eb;
+    top: -10px;
+    rotate: 45deg;
+    right: 21px;
+    z-index: -1;
+  }
 }

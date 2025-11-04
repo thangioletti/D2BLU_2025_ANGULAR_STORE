@@ -10,9 +10,14 @@ export class CartService {
 
   public addItem(item: ProductOnCartType): void {
     let cartItems = this.cartItems.getValue();
-    cartItems.push(item);
-    this.cartItems.next(cartItems);
-    console.log(cartItems)
+
+    const alreadyOnCart = cartItems.find(el => el.id == item.id);
+    if (alreadyOnCart) {
+      alreadyOnCart.quantity = parseInt(`${alreadyOnCart.quantity || 0}`) + parseInt(`${(item.quantity || 0)}`);
+    } else {
+      cartItems.push(item);
+    }
+    this.cartItems.next(cartItems);    
   }
 
   public cartItemsHasChanged() : Observable<Array<ProductOnCartType>> {

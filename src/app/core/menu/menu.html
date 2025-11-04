@@ -9,15 +9,20 @@
         <a [routerLink]="['products']" class="text-gray-600 hover:text-black transition-colors">
           Produtos
         </a>
-        <button class="relative text-gray-600 hover:text-black transition-colors">
+        <button
+          class="relative text-gray-600 hover:text-black transition-colors"
+          (click)="showCart()"
+        >
           <i class="las la-shopping-cart text-3xl"></i>
 
           <span
             class="absolute -top-1 -right-1 bg-black text-white rounded-full w-4 h-4 flex items-center justify-center text-xs"
           >
-            {{productQtd}}
+            {{ productQtd }}
           </span>
+          @if(cartActive) {
           <app-cart></app-cart>
+          }
         </button>
       </nav>
     </div>

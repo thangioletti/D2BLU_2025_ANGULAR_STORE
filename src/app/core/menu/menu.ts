@@ -12,6 +12,7 @@ import { Cart } from "./components/cart/cart";
 })
 export class Menu {
   protected productQtd: number = 0;
+  protected cartActive: boolean = false;
 
   constructor(private cartService: CartService) {
     this.cartService.cartItemsHasChanged().subscribe((products: Array<ProductType>) => {
@@ -19,5 +20,9 @@ export class Menu {
     })
   }
 
+  
+  protected showCart() {
+    this.cartActive = !this.cartActive;
+  }
 
 }
