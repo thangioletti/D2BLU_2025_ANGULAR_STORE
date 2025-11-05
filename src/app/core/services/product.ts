@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductService {
+  
 
   private productsSubject: BehaviorSubject<Array<ProductType>> = new BehaviorSubject<Array<ProductType>>([]);
   
@@ -69,8 +70,22 @@ export class ProductService {
     return products.find((item: ProductType) => item.id == id);    
   }
 
-  deleteProductById(id: number) {
+  public deleteProductById(id: number) {
     const products = this.productsSubject.getValue().filter((item: ProductType) => item.id != id);
+    this.productsSubject.next(products);
+  }
+
+  public addProduct(value: Partial<ProductType>) {
+    let maxId = 0;
+    const products = this.productsSubject.getValue();
+    products.forEach((el) => {
+      if (el.id > maxId) {
+        maxId = el.id;
+      }
+    });
+
+    value.id = maxId+1;
+    products.push(value as ProductType);
     this.productsSubject.next(products);
   }
 }

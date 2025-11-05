@@ -6,6 +6,7 @@ import { ProductOnCartType } from './product';
   providedIn: 'root'
 })
 export class CartService {
+  
   private cartItems = new BehaviorSubject<Array<ProductOnCartType>>([]);
 
   public addItem(item: ProductOnCartType): void {
@@ -22,5 +23,13 @@ export class CartService {
 
   public cartItemsHasChanged() : Observable<Array<ProductOnCartType>> {
     return this.cartItems.asObservable();
+  }
+
+  removeItemById(productId: number) {
+    let products = this.cartItems.getValue();
+    console.log(products);    
+    products = products.filter((el) => el.id != productId);
+    console.log(products)
+    this.cartItems.next(products);
   }
 }

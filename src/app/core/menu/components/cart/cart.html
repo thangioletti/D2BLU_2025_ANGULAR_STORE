@@ -9,10 +9,17 @@
             {{ product.quantity }}
         </div>
         <div>
-            {{ product.price }}
+            {{ product.price | currency: "BRL" }}
         </div>
       </div>
     </div>
+    <button class="rounded bg-red-500 p-2 text-white cursor-pointer" (click)="removeItem(product.id)">
+      <i class="las la-trash"></i>
+    </button>
   </div>
+  } @empty {
+    <div class="text-lg font-bold">
+      Carrinho vazio
+    </div>
   }
 </div>

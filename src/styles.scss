@@ -3,3 +3,16 @@
 .border, .border-b {
     border-color: #ebebeb !important;
 }
+
+input {
+    padding: 1rem;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.ng-submitted {
+    .ng-invalid {
+        border-color: red
+    }
+}

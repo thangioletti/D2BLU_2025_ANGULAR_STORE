@@ -1,0 +1,26 @@
+<div class="border p-4">
+  <div class="font-bold text-lg">Cadastro de Produtos</div>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="grid grid-cols-2 gap-4 mt-4">
+      <div class="col-span-2">
+        <div>Nome</div>
+        <input type="text" formControlName="name" />
+      </div>
+      <div>
+        <div>Preço</div>
+        <input type="text" formControlName="price"  />
+      </div>
+      <div>
+        <div>Categoria</div>
+        <input type="text" formControlName="category" />
+      </div>
+      <div class="col-span-2">
+        <div>Imagem</div>
+        <input type="text" formControlName="image"  />
+      </div>
+    </div>
+    <div class="flex items-center justify-center mt-4">
+      <button type="submit" class="bg-green-500 text-white rounded p-2 cursor-pointer">Salvar</button>
+    </div>
+  </form>
+</div>

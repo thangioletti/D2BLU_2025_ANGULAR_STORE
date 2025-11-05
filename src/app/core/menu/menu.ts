@@ -22,7 +22,7 @@ export class Menu {
 
   
   protected showCart() {
-    this.cartActive = !this.cartActive;
+    this.cartActive = true;
   }
 
 }
