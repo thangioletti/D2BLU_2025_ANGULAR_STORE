@@ -17,7 +17,7 @@ import {
 })
 export class ProductDetail {
   private productId!: number;
-  protected product: ProductType;
+  protected product!: ProductType;
   protected formGroup: FormGroup;
 
   constructor(
@@ -27,7 +27,9 @@ export class ProductDetail {
     private formBuilder: FormBuilder
   ) {
     this.productId = parseInt(this.route.snapshot.paramMap.get('id') || '');
-    this.product = this.productService.getProductById(this.productId);
+    this.productService.getProductById(this.productId).subscribe((result: ProductType) => {
+      this.product = result;
+    });
 
     this.formGroup = this.formBuilder.group({
       quantity: ['1'],
@@ -62,11 +64,11 @@ export class ProductDetail {
 
   more() {
     let qtd = this.formGroup.get('quantity')?.value || 0;
-    this.formGroup.get('quantity')?.setValue(parseInt(qtd)+1);
+    this.formGroup.get('quantity')?.setValue(parseInt(qtd) + 1);
   }
 
   less() {
     let qtd = this.formGroup.get('quantity')?.value || 0;
-    this.formGroup.get('quantity')?.setValue(Math.max(parseInt(qtd)-1, 0));
+    this.formGroup.get('quantity')?.setValue(Math.max(parseInt(qtd) - 1, 0));
   }
 }

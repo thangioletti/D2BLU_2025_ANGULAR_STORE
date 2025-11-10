@@ -11,6 +11,14 @@ import { ProductService, ProductType } from '../../core/services/product';
 export class Products {
   protected products: Array<ProductType> = [];
   constructor(private productService: ProductService) {
+    this.loadData();
+
+    this.productService.productsMustBeReloaded().subscribe(() => {
+      this.loadData();
+    })
+  }
+
+  private loadData() {
     this.productService.getProducts().subscribe((products: Array<ProductType>) => {
       this.products = products;
     });

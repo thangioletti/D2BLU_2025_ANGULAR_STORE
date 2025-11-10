@@ -16,6 +16,9 @@ export class ProductCard {
   constructor(private productService: ProductService) {}
 
   delete() {    
-    this.productService.deleteProductById(this.product.id);
+    this.productService.deleteProductById(this.product.id).subscribe(() => {
+      alert("Produto excluido com sucesso!");
+      this.productService.reloadProductList();
+    });
   }
 }
