@@ -17,7 +17,7 @@ export class Cart {
     });
   }
 
-  removeItem(productId: number) {
+  removeItem(productId: string) {
     this.cartService.removeItemById(productId);
   }
 }

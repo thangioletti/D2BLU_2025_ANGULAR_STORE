@@ -25,7 +25,7 @@ export class CartService {
     return this.cartItems.asObservable();
   }
 
-  removeItemById(productId: number) {
+  removeItemById(productId: string) {
     let products = this.cartItems.getValue();
     console.log(products);    
     products = products.filter((el) => el.id != productId);

@@ -33,7 +33,5 @@ export class ProductForm {
     }
 
     this.productService.addProduct(value);
-    alert('Produto adicionado!');
-    this.router.navigate(['/products']);
   }
 }

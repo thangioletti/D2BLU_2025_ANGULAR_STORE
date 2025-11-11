@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import {  HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  
-  
-
   private productsMustBeReloadedSubject: Subject<boolean> = new Subject();
-  private productsSubject: BehaviorSubject<Array<ProductType>> = new BehaviorSubject<Array<ProductType>>([]);
-  
-  constructor(private http: HttpClient) {        
-  }
-  
+  private productsSubject: BehaviorSubject<Array<ProductType>> = new BehaviorSubject<
+    Array<ProductType>
+  >([]);
+
+  constructor(private http: HttpClient, private router: Router) {}
+
   public reloadProductList() {
     this.productsMustBeReloadedSubject.next(true);
   }
@@ -23,37 +22,40 @@ export class ProductService {
   }
 
   public getProducts(): Observable<any> {
-    return this.http.get("http://localhost:3000/products");
+    return this.http.get('http://localhost:3000/products');
   }
 
-  public getProductById(id: number): any {
-    return this.http.get(`http://localhost:3000/products/${id}`);    
+  public getProductById(id: string): any {
+    return this.http.get(`http://localhost:3000/products/${id}`);
   }
 
-  public deleteProductById(id: number) {
+  public deleteProductById(id: string) {
     return this.http.delete(`http://localhost:3000/products/${id}`);
   }
 
   public addProduct(value: Partial<ProductType>) {
-    let maxId = 0;
-    const products = this.productsSubject.getValue();
-    products.forEach((el) => {
-      if (el.id > maxId) {
-        maxId = el.id;
-      }
+    this.getProducts().subscribe((products) => {
+      let maxId = 0;      
+      products.forEach((el: any) => {
+        if (parseInt(el.id) > maxId) {
+          maxId = parseInt(el.id);
+        }
+      });
+      maxId = maxId+1;
+      
+      value.id = `${maxId}`;
+      this.http.post('http://localhost:3000/products', value).subscribe(() => {
+        alert('Produto inserido!');
+        this.reloadProductList();
+        this.router.navigate(['/products']);
+
+      });
     });
-
-    value.id = maxId+1;
-
-    this.http.post("http://localhost:3000/products", value).subscribe(() => {
-      alert("Produto inserido!");
-      this.reloadProductList();
-    });    
   }
 }
 
 export interface ProductType {
-  id: number;
+  id: string;
   name: string;
   price: number;
   category: string;

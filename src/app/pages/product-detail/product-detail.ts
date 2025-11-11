@@ -16,7 +16,7 @@ import {
   styleUrl: './product-detail.scss',
 })
 export class ProductDetail {
-  private productId!: number;
+  private productId!: string;
   protected product!: ProductType;
   protected formGroup: FormGroup;
 
@@ -26,7 +26,7 @@ export class ProductDetail {
     private cartService: CartService,
     private formBuilder: FormBuilder
   ) {
-    this.productId = parseInt(this.route.snapshot.paramMap.get('id') || '');
+    this.productId = this.route.snapshot.paramMap.get('id') || '';
     this.productService.getProductById(this.productId).subscribe((result: ProductType) => {
       this.product = result;
     });
