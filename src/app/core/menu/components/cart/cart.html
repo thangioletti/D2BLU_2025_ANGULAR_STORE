@@ -6,20 +6,25 @@
       <div class="text-lg">{{ product.name }}</div>
       <div class="flex justify-between">
         <div>
-            {{ product.quantity }}
+          {{ product.quantity }}
         </div>
         <div>
-            {{ product.price | currency: "BRL" }}
+          {{ product.price | currency : 'BRL' }}
         </div>
       </div>
     </div>
-    <button class="rounded bg-red-500 p-2 text-white cursor-pointer" (click)="removeItem(product.id)">
+    <button
+      class="rounded bg-red-500 p-2 text-white cursor-pointer"
+      (click)="removeItem(product.id)"
+    >
       <i class="las la-trash"></i>
     </button>
   </div>
+
   } @empty {
-    <div class="text-lg font-bold">
-      Carrinho vazio
-    </div>
+  <div class="text-lg font-bold">Carrinho vazio</div>
+  <button (click)="show()">Mostrar</button>
+    <app-empty-message></app-empty-message>
+
   }
 </div>

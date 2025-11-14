@@ -52,6 +52,15 @@ export class ProductService {
       });
     });
   }
+
+  public updateProduct(value: ProductType) {
+    this.http.put(`http://localhost:3000/products/${value.id}`, value).subscribe(() => {
+        alert('Produto Alterado!');
+        this.reloadProductList();
+        this.router.navigate(['/products']);
+      });
+  }
+
 }
 
 export interface ProductType {

@@ -1,23 +1,52 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { CartService } from '../../../services/cart';
 import { ProductOnCartType } from '../../../services/product';
-import { CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, NgTemplateOutlet } from '@angular/common';
+import { EmptyMessage } from "../../../empty-message/empty-message";
 @Component({
   selector: 'app-cart',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, NgTemplateOutlet, CommonModule, EmptyMessage],
   templateUrl: './cart.html',
   styleUrl: './cart.scss',
 })
-export class Cart {
+export class Cart implements OnInit, AfterViewInit, OnDestroy, OnChanges {
+
   protected products!: ProductOnCartType[];
   protected cartActive = false;
-  constructor(private cartService: CartService) {
-    this.cartService.cartItemsHasChanged().subscribe((products: Array<ProductOnCartType>) => {
+
+  @ViewChild(EmptyMessage)
+  private message!: EmptyMessage;
+
+  constructor(private cartService: CartService) {   
+    console.log("Construtor")
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("OnChanges", changes)
+  }
+
+  ngOnDestroy(): void {
+        console.log("OnDestroy")
+  }
+
+  ngOnInit(): void {
+    console.log("OnInit")
+     this.cartService.cartItemsHasChanged().subscribe((products: Array<ProductOnCartType>) => {
       this.products = products;
     });
   }
 
+  ngAfterViewInit(): void {
+    console.log("AfterViewInit")
+    console.log(this.message)
+  }
+
+  
+
   removeItem(productId: string) {
     this.cartService.removeItemById(productId);
+  }
+
+  show() {
+    this.message.onClick();
   }
 }

@@ -20,7 +20,13 @@
       </div>
     </div>
     <div class="flex items-center justify-center mt-4">
-      <button type="submit" class="bg-green-500 text-white rounded p-2 cursor-pointer">Salvar</button>
+      <button type="submit" class="bg-green-500 text-white rounded p-2 cursor-pointer">
+        @if (isUpdateMode) {
+          Atualizar
+        } @else {
+          Salvar
+        }
+      </button>
     </div>
   </form>
 </div>

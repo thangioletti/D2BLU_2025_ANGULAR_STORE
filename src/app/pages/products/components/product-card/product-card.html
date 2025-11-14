@@ -11,6 +11,21 @@
     <h3 class="text-black">{{ product.name }}</h3>
     <p class="text-black">R$ {{ product.price }}</p>
   </div>
-  <button class="p-4 rounded cursor-pointer"  [routerLink]="['/product', product.id]">Detalhes</button>
-  <button class="p-4 bg-red-500 text-white rounded cursor-pointer" (click)="delete()"> Excluir </button>
+  <div class="flex gap-4">
+    <button
+      class="p-4 bg-green-500 text-white rounded cursor-pointer"
+      [routerLink]="['/product', product.id]"
+    >
+      Detalhes
+    </button>
+    <button
+      class="p-4 bg-blue-500 text-white rounded cursor-pointer"
+      [routerLink]="['/product-form', product.id]"
+    >
+      Editar
+    </button>
+    <button class="p-4 bg-red-500 text-white rounded cursor-pointer" (click)="delete()">
+      Excluir
+    </button>
+  </div>
 </div>

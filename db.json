@@ -29,11 +29,11 @@
       "image": "https://images.unsplash.com/photo-1617033298185-ab4b65511779?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwamFja2V0fGVufDF8fHx8MTc2MTAxNjM3NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
     },
     {
-      "id": "7",
-      "name": "Hellmann's Maionese Supreme 330G",
-      "price": "10,19",
+      "name": "Hellmann's ",
+      "price": "15",
       "category": "Maionese ",
-      "image": "https://m.media-amazon.com/images/I/71JV0avL6dL._AC_SX679_.jpg"
+      "image": "https://m.media-amazon.com/images/I/71JV0avL6dL._AC_SX679_.jpg",
+      "id": "7"
     }
   ]
 }
