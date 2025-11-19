@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "back": "npx json-server db.json",
+    "nvm": "nvm use 22",
     "test": "ng test"
   },
   "prettier": {

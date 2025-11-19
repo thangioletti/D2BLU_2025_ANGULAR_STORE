@@ -1,0 +1,62 @@
+<div class="grid grid-cols-3 gap-4 divide-x divide-y">
+  <div>
+    <div>Title pipe</div>
+    <div>{{ pipeExemples.title | titlecase }}</div>
+  </div>
+  <div>
+    <div>Lower pipe</div>
+    <div>{{ pipeExemples.title | lowercase }}</div>
+  </div>
+  <div>
+    <div>Upper pipe</div>
+    <div>{{ pipeExemples.title | uppercase }}</div>
+  </div>
+  <div>
+    <div>Date original</div>
+    <div>{{ pipeExemples.date }}</div>
+  </div>
+  <div appHighlight highlightColor="blue">
+    <div>Date pipe</div>
+    <div>{{ pipeExemples.date | date | uppercase}}</div>
+  </div>
+   <div>
+    <div>Date pipe</div>
+    <div>{{ pipeExemples.date | date: 'short' }}</div>
+  </div>
+  <div>
+    <div>Date pipe</div>
+    <div>{{ pipeExemples.date | date: 'dd/MM/yyyy' }}</div>
+  </div>
+
+  <div>
+    <div>Currency pipe</div>
+    <div>{{ pipeExemples.currency | currency }}</div>
+  </div>
+
+  <div>
+    <div>Currency pipe</div>
+    <div>{{ pipeExemples.currency | currency: "BRL"}}</div>
+  </div>
+
+  <div>
+    <div>Number pipe</div>
+    <div>{{ pipeExemples.currency | number:"1.2" }}</div>
+  </div>
+
+
+   <div>
+    <div>Percent pipe</div>
+    <div>{{ pipeExemples.percent | percent }}</div>
+  </div>
+
+   <div>
+    <div>Json pipe</div>
+    <div>{{ pipeExemples.json | json }}</div>
+  </div>
+
+   <div [class.bg-gray-200]="true" class="p-4 col-span-3">
+    <div>Short Name</div>
+    <div>{{ pipeExemples.name | shortName }}</div>
+  </div>
+  
+</div>
